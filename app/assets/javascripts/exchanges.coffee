@@ -1,6 +1,6 @@
 $(document).ready ->
 
-  $('form').submit ->
+  $('form').on 'keyup', ->
     if $('form').attr('action') == '/convert'
       $.ajax '/convert',
           type: 'GET'
@@ -15,3 +15,9 @@ $(document).ready ->
           success: (data, text, jqXHR) ->
             $('#result').val(data.value)
         return false;
+
+  document.getElementById('invert').onclick = ->
+    source_currency = $("#source_currency").val()
+    $("#source_currency").val($("#target_currency").val())
+    $("#target_currency").val(source_currency)
+  return
